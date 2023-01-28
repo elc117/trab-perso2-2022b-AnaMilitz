@@ -113,8 +113,8 @@ itemize listaStrings = map (\word-> "<li>" ++ word ++ "</li>") listaStrings
 Observação:
 Utiliza map, utiliza lambda e _**NÃO É**_ uma composição de funções:
 ``` 
-countWords :: [String] -> Int
-countWords listaStrings = map (\_ -> length listaStrings) listaStrings
+quadradoDaLista :: [Int] -> [Int]
+quadradoDaLista listaInteiros = map (\x -> x*x) listaInteiros
 ``` 
 # Provas de teoremas matemáticos com Haskell
 Definições: 
