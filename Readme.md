@@ -71,8 +71,51 @@ Comparando com a utilização do símbolo de composição:
 quadradoDepoisInversaoDeSinal :: Int -> Int
 quadradoDepoisInversaoDeSinal = inverteSinal . calculaQuadrado
 ```
- #### **Exemplo 3) Utilizando a função ">>=" do Monad:**
- 
+ #### **Exemplo 3) Utilizando uma função anônima (lambda):**
+ Utilizando funções criadas do 0: 
+ a) Utilizando 2 funções para criar uma composta:
+ ```
+dobraValor :: Int -> Int
+dobraValor x = x*2
+
+somaCinco :: Int -> Int
+somaCinco x = x + 5
+
+funcaoCompostaComLambda :: Int -> Int
+funcaoCompostaComLambda = \x -> somaCinco (dobraValor x)
+``` 
+
+b) Utilizando 4 funções para criar uma composta:
+``` 
+quadruplicaValor :: Int -> Int
+quadruplicaValor x = x*4
+
+dividePor2 :: Int -> Int
+dividePor2 x = x `div` 2
+
+somaDez :: Int -> Int
+somaDez x = x + 10 
+
+substraiUm :: Int -> Int
+substraiUm x = x - 1
+
+funcComposta:: Int -> Int 
+funcComposta = \x -> substraiUm(somaDez(dividePor2(quadruplicaValor x)))
+``` 
+c) Utilizando um exemplo em aula:
+
+Utiliza a função built-in map, utiliza uma função lambda e _**É**_ uma composição de funções.
+``` 
+itemize :: [String] -> [String]
+itemize listaStrings = map (\word-> "<li>" ++ word ++ "</li>") listaStrings
+``` 
+
+Observação:
+Utiliza map, utiliza lambda e _**NÃO É**_ uma composição de funções:
+``` 
+countWords :: [String] -> Int
+countWords listaStrings = map (\_ -> length listaStrings) listaStrings
+``` 
 # Provas de teoremas matemáticos com Haskell
 Definições: 
 -teorema matemático
