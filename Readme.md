@@ -24,8 +24,8 @@ calculaQuadradoDepoisSomaTres =  somaTres . calculaQuadrado
 
 - Com o argumento x recebido _explicitamente_:
 ```
-calculaQuadradoDepoisSomaTres :: Int -> Int
-calculaQuadradoDepoisSomaTres x = (somaTres . calculaQuadrado) x
+calculaQuadradoDepoisSomaTres' :: Int -> Int
+calculaQuadradoDepoisSomaTres' x = (somaTres . calculaQuadrado) x
 ```
 
 **Equivalência matemática:**
@@ -68,11 +68,12 @@ quadradoDepoisInversaoDeSinal = compose inverteSinal calculaQuadrado
 ```
 Comparando com a utilização do símbolo de composição:
 ```
-quadradoDepoisInversaoDeSinal :: Int -> Int
-quadradoDepoisInversaoDeSinal = inverteSinal . calculaQuadrado
+quadradoDepoisInversaoDeSinal' :: Int -> Int
+quadradoDepoisInversaoDeSinal' = inverteSinal . calculaQuadrado
 ```
  #### **Exemplo 3) Utilizando uma função anônima (lambda):**
  Utilizando funções criadas do 0: 
+ 
  a) Utilizando 2 funções para criar uma composta:
  ```
 dobraValor :: Int -> Int
@@ -113,12 +114,34 @@ itemize listaStrings = map (\word-> "<li>" ++ word ++ "</li>") listaStrings
 Observação:
 Utiliza map, utiliza lambda e _**NÃO É**_ uma composição de funções:
 ``` 
-quadradoDaLista :: [Int] -> [Int]
-quadradoDaLista listaInteiros = map (\x -> x*x) listaInteiros
+itemize' :: [String] -> [String]
+itemize' listaStrings = map (\word-> "<li>" ++ word) listaStrings
 ``` 
 # Provas de teoremas matemáticos com Haskell
-Definições: 
--teorema matemático
--prova
+### Definições:
+> Na matemática, um teorema é uma afirmação que pode ser provada como verdadeira, por meio de outras afirmações já demonstradas, como outros teoremas, juntamente com afirmações anteriormente aceitas, como axiomas.
+> 
+> Prova é o processo de mostrar que um teorema está correto. - [Wikipedia]([http://www.sfu.ca/~tjd/383summer2019/haskell_comp_and_app_lhs.html#:~:text=Composing%20functions%20is%20a%20common,g%20and%20then%20calls%20f](https://pt.wikipedia.org/wiki/Teorema#:~:text=Na%20matemática%2C%20um%20teorema%20é,que%20um%20teorema%20está%20correto.)).
 
-Link para o projeto no Replit: 
+### **Principais ferramentas para provar teoremas em Haskell:**
+Coq, Agda, Isabelle/HOL, Lean, PVS, Mizar, HOL Light, Metamath, ACL2 e NuPRL.
+
+### **Exemplo de prova de teorema em Haskell:**
+Prova da proposição de Peano, utilizando a biblioteca Coq:
+>"Todo número natural é o sucessor de outro número natural ou é o número zero".
+
+```
+Inductive numeroNatural : Conjunto :=
+  | zero : numeroNatural
+  | sucessor : numeroNatural -> numeroNatural.
+
+Teorema Peano : para todo n : numeroNatural, n = zero ou (existe m : numeroNatural, n = sucessor m).
+Prova.
+intros.
+inducao n.
+- esquerda. reflexividade.
+- direita. existe n. reflexividade.
+Qed.
+```
+
+[Link para o projeto no Replit](https://replit.com/@Ana-Paula-Milit/projeto-composicao-de-funcoes#Main.hs)
