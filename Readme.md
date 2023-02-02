@@ -21,8 +21,6 @@ somaTres x = x + 3
 calculaQuadradoDepoisSomaTres :: Int -> Int
 calculaQuadradoDepoisSomaTres =  somaTres . calculaQuadrado
 ```
-Ex: calculaQuadradoDepoisSomaTres 5 
-    R:28
 
 - Com o argumento x recebido _explicitamente_:
 ```
