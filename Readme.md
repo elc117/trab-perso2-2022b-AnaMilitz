@@ -141,7 +141,7 @@ R: 59
 
 c) Utilizando um exemplo em aula:
 
-Utiliza a função built-in map, utiliza uma função lambda e _**É**_ uma composição de funções.
+Utiliza a função built-in map, utiliza uma função lambda e é uma composição de funções.
 ``` 
 itemize :: [String] -> [String]
 itemize listaStrings = map (\word-> "<li>" ++ word ++ "</li>") listaStrings
