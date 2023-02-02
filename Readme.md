@@ -21,13 +21,25 @@ somaTres x = x + 3
 calculaQuadradoDepoisSomaTres :: Int -> Int
 calculaQuadradoDepoisSomaTres =  somaTres . calculaQuadrado
 ```
+Ex: calculaQuadradoDepoisSomaTres 5 
+    R:28
 
 - Com o argumento x recebido _explicitamente_:
 ```
 calculaQuadradoDepoisSomaTres' :: Int -> Int
 calculaQuadradoDepoisSomaTres' x = (somaTres . calculaQuadrado) x
 ```
+Ex:
+```
+calculaQuadradoDepoisSomaTres 5   
+R:28
 
+ou 
+
+calculaQuadradoDepoisSomaTres' 5   
+R:28
+```
+    
 **Equivalência matemática:**
 
 Renomeando as funções acima...
@@ -66,11 +78,23 @@ inverteSinal x = (-1) * x
 quadradoDepoisInversaoDeSinal :: Int -> Int
 quadradoDepoisInversaoDeSinal = compose inverteSinal calculaQuadrado
 ```
+
 Comparando com a utilização do símbolo de composição:
 ```
 quadradoDepoisInversaoDeSinal' :: Int -> Int
 quadradoDepoisInversaoDeSinal' = inverteSinal . calculaQuadrado
 ```
+Ex:
+```
+quadradoDepoisInversaoDeSinal 5   
+R:-25
+
+ou 
+
+quadradoDepoisInversaoDeSinal' 5   
+R:-25
+```
+
  #### **Exemplo 3) Utilizando uma função anônima (lambda):**
  Utilizando funções criadas do 0: 
  
@@ -84,6 +108,11 @@ somaCinco x = x + 5
 
 funcaoCompostaComLambda :: Int -> Int
 funcaoCompostaComLambda = \x -> somaCinco (dobraValor x)
+``` 
+Ex: 
+``` 
+funcaoCompostaComLambda 2 
+R: 9
 ``` 
 
 b) Utilizando 4 funções para criar uma composta:
@@ -103,6 +132,13 @@ substraiUm x = x - 1
 funcComposta:: Int -> Int 
 funcComposta = \x -> substraiUm(somaDez(dividePor2(quadruplicaValor x)))
 ``` 
+
+Ex: 
+``` 
+funcComposta 25
+R: 59
+```
+
 c) Utilizando um exemplo em aula:
 
 Utiliza a função built-in map, utiliza uma função lambda e _**É**_ uma composição de funções.
@@ -110,13 +146,12 @@ Utiliza a função built-in map, utiliza uma função lambda e _**É**_ uma comp
 itemize :: [String] -> [String]
 itemize listaStrings = map (\word-> "<li>" ++ word ++ "</li>") listaStrings
 ``` 
+Ex: 
+``` 
+itemize ["ola"]
+R: ["<li>ola</li>"]
+```
 
-Observação:
-Utiliza map, utiliza lambda e _**NÃO É**_ uma composição de funções:
-``` 
-itemize' :: [String] -> [String]
-itemize' listaStrings = map (\word-> "<li>" ++ word) listaStrings
-``` 
 # Provas de teoremas matemáticos com Haskell
 ### Definições:
 > Na matemática, um teorema é uma afirmação que pode ser provada como verdadeira, por meio de outras afirmações já demonstradas, como outros teoremas, juntamente com afirmações anteriormente aceitas, como axiomas.
